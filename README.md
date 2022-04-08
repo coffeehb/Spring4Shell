@@ -14,8 +14,8 @@ class.module.classLoader.URLs[0]= ，不会抛出500异常，和上面的请求�
 
 给所有Body，URL的参数中以这2个POC，多插入一个KEY，判断两个POC插入后返回的请求响应码 和 返回内容是不是一致。如果不一致，则抛出告警。【todo: 还可以在返回500时，对内容进行关键字匹配】
 
-## yakit的靶机测试
-感谢yakit的靶机, 地址来源于：
+## 靶机测试
+感谢FofaX官方交流群的@官方提醒 的靶机, 地址来源于：
 https://github.com/yaklang/yakit-store/blob/master/yak_mitm/cve-2022-22965-spring-core-rce-lt-jdk9/yak_mitm.yak
 
 ![avatar](20220408004036.png)
@@ -23,10 +23,17 @@ https://github.com/yaklang/yakit-store/blob/master/yak_mitm/cve-2022-22965-sprin
 ## 关于误报漏报
 
 目前测试是发现有误报的，因为判断条件是这样的：
-两次的响应码不同并且 响应内容不同就认为存在漏洞
+- 条件1 满足两次响应码 和响应内容不一致就报错
+- 条件2 两次中某次返回内容出现关键字：org.springframework.validation.DataBinder
 ```
- if (status_code != req1_statuscode && !responseBody.equals(req1_body)){ // 判断是否存在漏洞
-                            hasIssue = true;
+// 判断是否存在漏洞
+
+                    if (status_code != req1_statuscode && !responseBody.equals(req1_body)){
+                        hasIssue = true;
+                    }
+
+                    if(req1_body.contains(FoundErrorKey) || responseBody.contains(FoundErrorKey)){
+                        hasIssue = true;
                     }
 ```
 
