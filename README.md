@@ -18,8 +18,7 @@ class.module.classLoader.URLs[0]= ，不会抛出500异常，和上面的请求�
 给所有Body，URL的参数中以这2个POC，多插入一个KEY，判断两个POC插入后返回的请求响应码 和 返回内容是不是一致。如果不一致，则抛出告警。【todo: 还可以在返回500时，对内容进行关键字匹配】
 
 ## 靶机测试
-感谢FofaX官方交流群的@官方提醒 的靶机, 地址来源于：
-https://github.com/yaklang/yakit-store/blob/master/yak_mitm/cve-2022-22965-spring-core-rce-lt-jdk9/yak_mitm.yak
+感谢FofaX官方交流群的@官方提醒 的靶机
 
 ![avatar](20220408004036.png)
 
