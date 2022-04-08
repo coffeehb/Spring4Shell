@@ -20,3 +20,15 @@ https://github.com/yaklang/yakit-store/blob/master/yak_mitm/cve-2022-22965-sprin
 
 ![avatar](20220408004036.png)
 
+## 关于误报漏报
+
+目前测试是发现有误报的，因为判断条件是这样的：
+两次的响应码不同并且 响应内容不同就认为存在漏洞
+```
+ if (status_code != req1_statuscode && !responseBody.equals(req1_body)){ // 判断是否存在漏洞
+                            hasIssue = true;
+                    }
+```
+
+漏报情况：
+    触发了被动式测试，基于这个判断条件，在Spring + JDK 9.0以上 + Tomcat 应该是没有漏报
