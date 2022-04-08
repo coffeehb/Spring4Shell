@@ -20,7 +20,7 @@ class.module.classLoader.URLs[0]= ，不会抛出500异常，和上面的请求�
 ## 靶机测试
 感谢FofaX官方交流群的@官方提醒 的靶机
 
-自己搭建：`docker run -p 8080:8080 springcommunity/spring-framework-petclinic`
+自己搭建源码：`https://github.com/spring-petclinic/spring-framework-petclinic`
 
 ![avatar](20220408004036.png)
 
