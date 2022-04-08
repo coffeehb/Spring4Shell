@@ -43,3 +43,8 @@ class.module.classLoader.URLs[0]= ，不会抛出500异常，和上面的请求�
 
 漏报情况：
     触发了被动式测试，基于这个判断条件，在Spring + JDK 9.0以上 + Tomcat 应该是没有漏报
+
+## 关于确认发出去的请求
+
+在插件Logger++里面，通过Comment找req1 和req2 如下: 
+![avatar](20220408114012.png)
